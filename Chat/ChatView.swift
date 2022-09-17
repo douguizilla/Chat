@@ -47,7 +47,7 @@ struct ChatView: View {
                     .focused($isFocused)
                 
                 Button {
-                    
+                    sendMessage()
                 } label: {
                     Image(systemName: "paperplane.fill")
                         .foregroundColor(.white)
@@ -64,6 +64,12 @@ struct ChatView: View {
         .padding(.vertical)
         .padding(.horizontal)
         .background(.thickMaterial)
+    }
+    
+    func sendMessage(){
+        if let message = viewModel.sendMessage(text, in: chat){
+            text = ""
+        }
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]
