@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChatView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject var viewModel: ChatsViewModel
     let chat : Chat
     
@@ -16,6 +17,9 @@ struct ChatView: View {
     @State private var messageIDToScroll: UUID?
     
     private let userImageSize: CGFloat = 30
+    private var backgroundColor : Color {
+        return colorScheme == .dark ? .secondary : .white
+    }
     
     var body: some View {
         VStack(spacing: 0){
@@ -82,7 +86,7 @@ struct ChatView: View {
             HStack(spacing: 10){
                 Image(systemName: "ellipsis.circle")
                     .resizable()
-                    .frame(width: userImageSize, height: userImageSize)
+                    .frame(width: 24, height: 24)
             }
         }
     }
@@ -109,7 +113,7 @@ struct ChatView: View {
                 TextField("Message...", text: $text)
                     .padding(.horizontal, 10)
                     .frame(height: height)
-                    .background(Color.white)
+                    .background(backgroundColor)
                     .clipShape(RoundedRectangle(cornerRadius: 13))
                     .focused($isFocused)
                 
@@ -143,29 +147,47 @@ struct ChatView: View {
     let columns = [GridItem(.flexible(minimum: 10))]
     
     func getMessagesView(viewWidth: CGFloat)->some View {
-        LazyVGrid(columns: columns, spacing: 0) {
-            ForEach(chat.messages){ message in
-                let isReceived = message.type == .Received
-                HStack{
-                    ZStack{
-                        Text(message.text)
-                            .padding(.horizontal)
-                            .padding(.vertical, 12)
-                            .background(
-                                isReceived ? Color.black.opacity(0.2) : .green.opacity(0.9)
-                            )
-                            .cornerRadius(13)
+        LazyVGrid(columns: columns, spacing: 0, pinnedViews: [.sectionHeaders]) {
+            let sectionMessages = viewModel.getSectionMessage(for: chat)
+            ForEach(sectionMessages.indices, id: \.self){ sectionIndex in
+                let messages = sectionMessages[sectionIndex]
+                Section(
+                    header: sectionHeader(firstMessage: messages.first!)
+                ){
+                    ForEach(messages){ message in
+                        let isReceived = message.type == .Received
+                        HStack{
+                            ZStack{
+                                Text(message.text)
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 12)
+                                    .background(
+                                        isReceived ? Color.primary.opacity(0.2) : .green.opacity(0.9)
+                                    )
+                                    .cornerRadius(13)
+                            }
+                            .frame(width: viewWidth * 0.7, alignment:  isReceived ? .leading : .trailing)
+                            .padding(.vertical)
+                        }
+                        .frame(
+                            maxWidth: .infinity,
+                            alignment: isReceived ? .leading : .trailing
+                        )
+                        .id(message.id)
                     }
-                    .frame(width: viewWidth * 0.7, alignment:  isReceived ? .leading : .trailing)
-                    .padding(.vertical)
-//                    .background(Color.blue)
                 }
-                .frame(
-                    maxWidth: .infinity,
-                    alignment: isReceived ? .leading : .trailing
-                )
-                .id(message.id)
             }
+        }
+    }
+    
+    func sectionHeader(firstMessage message: Message) -> some View {
+        ZStack{
+            Text(message.date.descriptiveString(dateStyle: .medium))
+                .foregroundColor(.white)
+                .font(.system(size: 15, weight: .regular))
+                .padding(.vertical, 5)
+                .padding(.horizontal, 10)
+                .background(Capsule().foregroundColor(.blue))
         }
     }
 }
