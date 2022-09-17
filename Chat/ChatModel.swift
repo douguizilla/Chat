@@ -50,8 +50,8 @@ extension Chat {
             Message("Quenhé?", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("Mario...", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("Que Mario? '------'", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
-            Message("eita...", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1)),
-            Message("Mario Bros haha", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1))
+            Message("eita...", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 0)),
+            Message("Mario Bros haha", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 0))
         ],
              hasUnreadMessage: true
             ),
