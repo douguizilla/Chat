@@ -52,7 +52,9 @@ extension Chat {
             Message("Que Mario? '------'", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("eita...", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("Mario Bros haha", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1))
-        ]),
+        ],
+             hasUnreadMessage: true
+            ),
         Chat(person: Person(name: "Yago", imgString: "img2"), messages: [
             Message("Hey Yago", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 4)),
             Message("Tô fazendo um chat, mas é muito dificil, você pode me ajudar?", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 3)),
@@ -65,7 +67,9 @@ extension Chat {
             Message("Que vontade? '------'", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("A vontade de fazer aquele bolo", type: .Received, date: Date(timeIntervalSinceNow: -86400 * 1)),
             Message("FAZ!!!", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 1))
-        ]),
+        ],
+             hasUnreadMessage: true
+            ),
         Chat(person: Person(name: "Gilmar", imgString: "img3"), messages: [
             Message("Hey Gilmar", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 3)),
             Message("Tô fazendo um chat, mas é muito dificil, você pode me ajudar?", type: .Sent, date: Date(timeIntervalSinceNow: -86400 * 3)),

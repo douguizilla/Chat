@@ -11,6 +11,7 @@ struct ChatRow: View {
     let chat: Chat
     let userImageSize: CGFloat = 70
     let chatRowSize: CGFloat = 80
+    let unreadMessagesBadgeSize: CGFloat = 18
     
     var body: some View {
         HStack(spacing: 20){
@@ -37,11 +38,14 @@ struct ChatRow: View {
                             .frame(height: 50, alignment: .top)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .padding(.trailing, 40)
+                            
 
                     }
-                    
-                    
                 }
+                Circle()
+                    .foregroundColor(chat.hasUnreadMessage ? .blue : .clear)
+                    .frame(width: unreadMessagesBadgeSize, height: unreadMessagesBadgeSize)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
         .frame(height: chatRowSize)
