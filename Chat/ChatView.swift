@@ -15,6 +15,7 @@ struct ChatView: View {
     @FocusState private var isFocused
     @State private var messageIDToScroll: UUID?
     
+    private let userImageSize: CGFloat = 30
     
     var body: some View {
         VStack(spacing: 0){
@@ -52,10 +53,41 @@ struct ChatView: View {
         }
         .padding(.top, 1)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarItems(leading: navigationBarLeadingBtn, trailing: navigationBarTrailingBtn)
         .onAppear{
             viewModel.markAsRead(false, chat: chat)
         }
     }
+    
+    var navigationBarLeadingBtn: some View {
+        Button{
+            
+        }label: {
+            HStack(spacing: 10){
+                Image(chat.person.imgString)
+                    .resizable()
+                    .frame(width: userImageSize, height: userImageSize)
+                    .clipShape(Circle())
+                
+                Text(chat.person.name)
+                    .foregroundColor(.primary)
+            }
+        }
+    }
+    
+    var navigationBarTrailingBtn: some View {
+        Button{
+            
+        }label: {
+            HStack(spacing: 10){
+                Image(systemName: "ellipsis.circle")
+                    .resizable()
+                    .frame(width: userImageSize, height: userImageSize)
+            }
+        }
+    }
+    
+    
     
     func scrollTo(
         messageID: UUID,
@@ -140,7 +172,9 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: Chat.sampleChat[0])
-            .environmentObject(ChatsViewModel())
+        NavigationView{
+            ChatView(chat: Chat.sampleChat[0])
+                .environmentObject(ChatsViewModel())
+        }
     }
 }
