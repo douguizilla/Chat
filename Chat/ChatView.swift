@@ -10,6 +10,8 @@ import SwiftUI
 struct ChatView: View {
     
     @EnvironmentObject var viewModel: ChatsViewModel
+    @State private var text = ""
+    @FocusState private var isFocused
     
     let chat : Chat
     var body: some View {
@@ -23,12 +25,45 @@ struct ChatView: View {
             .background(
                 Color.yellow
             )
+            
+            toolbarView()
         }
         .padding(.top, 1)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewModel.markAsRead(false, chat: chat)
         }
+    }
+    
+    func toolbarView() -> some View {
+        VStack{
+            let height: CGFloat = 37
+            HStack{
+                TextField("Message...", text: $text)
+                    .padding(.horizontal, 10)
+                    .frame(height: height)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 13))
+                    .focused($isFocused)
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "paperplane.fill")
+                        .foregroundColor(.white)
+                        .frame(minWidth: height, minHeight: height)
+                        .background(
+                            Circle()
+                                .foregroundColor(text.isEmpty ? .gray : .blue)
+                        )
+                }
+                .disabled(text.isEmpty)
+            }
+            .frame(height: height)
+        }
+        .padding(.vertical)
+        .padding(.horizontal)
+        .background(.thickMaterial)
     }
     
     let columns = [GridItem(.flexible(minimum: 10))]
