@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		038457C028D62F52007BEE84 /* ChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457BF28D62F52007BEE84 /* ChatApp.swift */; };
-		038457C228D62F52007BEE84 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457C128D62F52007BEE84 /* ContentView.swift */; };
+		038457C228D62F52007BEE84 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457C128D62F52007BEE84 /* ChatListView.swift */; };
 		038457C428D62F54007BEE84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038457C328D62F54007BEE84 /* Assets.xcassets */; };
 		038457C728D62F54007BEE84 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038457C628D62F54007BEE84 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		038457BC28D62F52007BEE84 /* Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		038457BF28D62F52007BEE84 /* ChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatApp.swift; sourceTree = "<group>"; };
-		038457C128D62F52007BEE84 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		038457C128D62F52007BEE84 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		038457C328D62F54007BEE84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		038457C628D62F54007BEE84 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				038457BF28D62F52007BEE84 /* ChatApp.swift */,
-				038457C128D62F52007BEE84 /* ContentView.swift */,
+				038457C128D62F52007BEE84 /* ChatListView.swift */,
 				038457C328D62F54007BEE84 /* Assets.xcassets */,
 				038457C528D62F54007BEE84 /* Preview Content */,
 			);
@@ -137,7 +137,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				038457C228D62F52007BEE84 /* ContentView.swift in Sources */,
+				038457C228D62F52007BEE84 /* ChatListView.swift in Sources */,
 				038457C028D62F52007BEE84 /* ChatApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
