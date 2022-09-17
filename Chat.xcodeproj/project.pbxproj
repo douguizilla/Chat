@@ -14,6 +14,7 @@
 		038457CE28D6358E007BEE84 /* ChatRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457CD28D6358E007BEE84 /* ChatRow.swift */; };
 		038457D028D63E0B007BEE84 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457CF28D63E0B007BEE84 /* ChatModel.swift */; };
 		038457D228D64A08007BEE84 /* Date+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457D128D64A08007BEE84 /* Date+Helpers.swift */; };
+		038457D428D64EDB007BEE84 /* ChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 038457D328D64EDB007BEE84 /* ChartsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		038457CD28D6358E007BEE84 /* ChatRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRow.swift; sourceTree = "<group>"; };
 		038457CF28D63E0B007BEE84 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		038457D128D64A08007BEE84 /* Date+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Helpers.swift"; sourceTree = "<group>"; };
+		038457D328D64EDB007BEE84 /* ChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				038457CD28D6358E007BEE84 /* ChatRow.swift */,
 				038457CF28D63E0B007BEE84 /* ChatModel.swift */,
 				038457D128D64A08007BEE84 /* Date+Helpers.swift */,
+				038457D328D64EDB007BEE84 /* ChartsViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				038457C228D62F52007BEE84 /* ChatListView.swift in Sources */,
+				038457D428D64EDB007BEE84 /* ChartsViewModel.swift in Sources */,
 				038457CE28D6358E007BEE84 /* ChatRow.swift in Sources */,
 				038457C028D62F52007BEE84 /* ChatApp.swift in Sources */,
 				038457D028D63E0B007BEE84 /* ChatModel.swift in Sources */,

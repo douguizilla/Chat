@@ -8,14 +8,28 @@
 import SwiftUI
 
 struct ChatListView: View {
-    let chats = Chat.sampleChat
+    
+    @StateObject var viewModel = ChatsViewModel()
+    
+    @State private var query = ""
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(chats) { chat in
+                ForEach(viewModel.getSortedFilteredChats(query: query)) { chat in
                     ChatRow(chat: chat)
+                        .overlay(
+                            NavigationLink(destination: {
+                                Text(chat.person.name)
+                            }){
+                                EmptyView()
+                            }
+                            .frame(width: 0)
+                            .opacity(0)
+                        )
                 }
             }
+            .searchable(text: $query)
             .listStyle(PlainListStyle())
             .navigationTitle("Chats")
             .toolbar {
