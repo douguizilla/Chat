@@ -17,6 +17,7 @@ struct ChatView: View {
             GeometryReader{ proxy in
                 ScrollView{
                     getMessagesView(viewWidth: proxy.size.width)
+                        .padding(.horizontal)
                 }
             }
             .background(
@@ -35,10 +36,26 @@ struct ChatView: View {
     func getMessagesView(viewWidth: CGFloat)->some View {
         LazyVGrid(columns: columns, spacing: 0) {
             ForEach(chat.messages){ message in
+                let isReceived = message.type == .Received
                 HStack{
-                    Text(message.text)
+                    ZStack{
+                        Text(message.text)
+                            .padding(.horizontal)
+                            .padding(.vertical, 12)
+                            .background(
+                                isReceived ? Color.black.opacity(0.2) : .green.opacity(0.9)
+                            )
+                            .cornerRadius(13)
+                    }
+                    .frame(width: viewWidth * 0.7, alignment:  isReceived ? .leading : .trailing)
+                    .padding(.vertical)
+//                    .background(Color.blue)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(
+                    maxWidth: .infinity,
+                    alignment: isReceived ? .leading : .trailing
+                )
+                .id(message.id)
             }
         }
     }
