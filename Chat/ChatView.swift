@@ -8,23 +8,45 @@
 import SwiftUI
 
 struct ChatView: View {
-    
     @EnvironmentObject var viewModel: ChatsViewModel
+    let chat : Chat
+    
     @State private var text = ""
     @FocusState private var isFocused
+    @State private var messageIDToScroll: UUID?
     
-    let chat : Chat
+    
     var body: some View {
         VStack(spacing: 0){
             GeometryReader{ proxy in
                 ScrollView{
-                    getMessagesView(viewWidth: proxy.size.width)
-                        .padding(.horizontal)
+                    ScrollViewReader{ scrollReader in
+                        getMessagesView(viewWidth: proxy.size.width)
+                            .padding(.horizontal)
+                            .onChange(of: messageIDToScroll) { _ in
+                                if let messageID = messageIDToScroll {
+                                    scrollTo(
+                                        messageID: messageID,
+                                        shouldAnimate: true,
+                                        scrollReader: scrollReader
+                                    )
+                                }
+                            }
+                            .onAppear{
+                                if let messageID = chat.messages.last?.id {
+                                    scrollTo(
+                                        messageID: messageID,
+                                        anchor: .bottom,
+                                        shouldAnimate: true,
+                                        scrollReader: scrollReader
+                                    )
+                                }
+                            }
+                    }
+                    
                 }
             }
-            .background(
-                Color.yellow
-            )
+            .padding(.bottom, 5)
             
             toolbarView()
         }
@@ -32,6 +54,19 @@ struct ChatView: View {
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewModel.markAsRead(false, chat: chat)
+        }
+    }
+    
+    func scrollTo(
+        messageID: UUID,
+        anchor: UnitPoint? = nil,
+        shouldAnimate: Bool,
+        scrollReader: ScrollViewProxy
+    ){
+        DispatchQueue.main.async {
+            withAnimation(shouldAnimate ? Animation.easeIn : nil) {
+                scrollReader.scrollTo(messageID, anchor: anchor)
+            }
         }
     }
     
@@ -69,6 +104,7 @@ struct ChatView: View {
     func sendMessage(){
         if let message = viewModel.sendMessage(text, in: chat){
             text = ""
+            messageIDToScroll = message.id
         }
     }
     
