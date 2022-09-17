@@ -40,6 +40,14 @@ struct ChatListView: View {
                             }
                             .tint(.blue)
                         }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                            Button {
+                                
+                            } label: {
+                                Label("Delete", systemImage: "trash.fill")
+                            }
+                            .tint(.red)
+                        }
                 }
             }
             .searchable(text: $query)
