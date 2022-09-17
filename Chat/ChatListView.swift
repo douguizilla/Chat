@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct ChatListView: View {
+    let chats = Chat.sampleChat
     var body: some View {
         NavigationView {
             List {
-                ForEach(0 ..< 10) { i in
-                    ChatRow()
+                ForEach(chats) { chat in
+                    ChatRow(chat: chat)
                 }
             }
             .listStyle(PlainListStyle())
