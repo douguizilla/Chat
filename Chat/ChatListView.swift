@@ -20,13 +20,26 @@ struct ChatListView: View {
                     ChatRow(chat: chat)
                         .overlay(
                             NavigationLink(destination: {
-                                Text(chat.person.name)
+                                ChatView(chat: chat)
+                                    .environmentObject(viewModel)
                             }){
                                 EmptyView()
                             }
-                            .frame(width: 0)
-                            .opacity(0)
+                                .frame(width: 0)
+                                .opacity(0)
                         )
+                        .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                            Button {
+                                viewModel.markAsRead(!chat.hasUnreadMessage, chat: chat)
+                            } label: {
+                                if chat.hasUnreadMessage {
+                                    Label("Read", systemImage: "text.bubble")
+                                }else{
+                                    Label("Unread", systemImage: "circle.fill")
+                                }
+                            }
+                            .tint(.blue)
+                        }
                 }
             }
             .searchable(text: $query)

@@ -29,6 +29,7 @@ struct ChatRow: View {
                         Spacer()
                         
                         Text(chat.messages.last?.date.descriptiveString() ?? "")
+                            .foregroundColor(chat.hasUnreadMessage ? .blue : .primary)
                     }
                     
                     HStack{
